@@ -26,18 +26,20 @@ def getGarageInfo():
 
     # create a list of all javascript scripts
     newlist = list(soup.find_all('script', type="text/javascript"))
-    i = 0  # TODO: fix this so I can loop in a more pythonic way
+    #i = 0  # TODO: fix this so I can loop in a more pythonic way
 
     # create lists to store names of garages and their percentages
     garageNames = ['A', 'B', 'C', 'D', 'H', 'I', 'Libra']
     percentages = []
 
     # loop through all of the scripts and insert values into the lists
-    for item in newlist:
+    for i in range(len(newlist)):
 
         # finds where the percentage is stored
         # then uses regex to get the percentage from text
         # then inserts into the list
+        item = newlist[i]
+
         if('percent:' in item.get_text()):
             percent = re.findall('\d+', item.get_text())[1]
             percentages.insert(i, percent)
